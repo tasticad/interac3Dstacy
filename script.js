@@ -46,13 +46,14 @@
 		camera.position.y = -3;
 
 		// model texture and material:
-		let stacy_txt = new THREE.TextureLoader().load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy.jpg');
+		let stacy_txt = new THREE.TextureLoader().load('images/stacy.jpg'); 
+		// let stacy_txt = new THREE.TextureLoader().load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy.jpg');
 
 		stacy_txt.flipY = false; // we flip the texture so that its the right way up
 
 		const stacy_mtl = new THREE.MeshPhongMaterial({
 			map: stacy_txt,
-			color: 0xffffff,
+			color: 0xffffff, 
 			skinning: true
 		});
 
@@ -62,8 +63,8 @@
 		loader.load(
 			MODEL_PATH,
 			function(gltf) { // A lot is going to happen here
-				model = gltf.scene;
-				let fileAnimations = gltf.animations;
+				let model = gltf.scene
+				let fileAnimations = gltf.animations
 
 				model.traverse(o => {
 					if (o.isMesh) {
@@ -149,13 +150,14 @@
 	});
 	// Add floor to scene
 	let floor = new THREE.Mesh(floorGeometry, floorMaterial);
-	floor.rotation.x = -0.5 * Math.PI;
+	floor.rotation.x = -0.5 * Math.PI; // There are 2 pi radians (rad) in a circle
 	floor.receiveShadow = true;
 	floor.position.y = -11;
 	scene.add(floor);
 	
 	// Background circle
-	let geometry = new THREE.SphereGeometry(8, 32, 32);
+	// let geometry = new THREE.SphereGeometry(8, 32, 32);
+	let geometry = new THREE.CircleGeometry(8, 100);
 	let material = new THREE.MeshBasicMaterial({ color: 0xf5636c }); // 0x9bffaf 0xf2ce2e 0xf5636c
 	let sphere = new THREE.Mesh(geometry, material);
 	sphere.position.z = -15;
